@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-function App() {
+const Switch = ({ value, onClick }) => (
+  <div className="switch-container" onClick={onClick}>
+    <div className={`switch-circle ${!!value ? "on" : "off"}`} />
+  </div>
+);
+
+const App = () => {
+  const [value, setValue] = React.useState(false);
+  const handleClick = React.useCallback(() => {
+    setValue(!value);
+  }, [value]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Switch value={value} onClick={handleClick} />
     </div>
   );
-}
+};
 
 export default App;
